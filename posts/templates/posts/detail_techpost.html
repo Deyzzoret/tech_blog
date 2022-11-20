@@ -1,0 +1,14 @@
+{% extends 'posts/index.html' %}
+
+{% block title %}Detailed TechPost{% endblock title %}
+
+{% block content %}
+    <ul> 
+            <li> {{object.title_post}} </li>
+            <li> {{object.date_post}} </li>
+            <li> {{object.content_post}} </li>
+            <li> {{object.image_post}} </li>
+            <li> {{object.authors}} </li>
+    </ul>
+
+{% endblock content %}
