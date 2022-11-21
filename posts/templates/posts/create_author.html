@@ -1,10 +1,10 @@
 {% extends 'index.html' %}
 
-{% block title %} Create TechPost{% endblock title %}
+{% block title %} Create TechPost Author{% endblock title %}
 
 {% block content %} 
 
-    <form action="/create-techpost/" enctype="multipart/form-data" method="POST" >
+    <form action="/create-techpost-author/" method="POST" >
         {% csrf_token %}
         {{form}}
         <button> Create </button>

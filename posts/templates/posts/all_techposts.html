@@ -1,11 +1,11 @@
-{% extends 'posts/index.html' %}
+{% extends 'index.html' %}
 
 {% block title %}TechPosts{% endblock title %}
 
 {% block content %}
     <ul> 
         {% for techpost in object_list  %}
-            <li> {{techpost.title_post}} </li>
+            <li> <h1> {{techpost.title_post}} </h1> </li>
             <li> {{techpost.date_post}} </li>
             <li> {{techpost.content_post}} </li>
             <li> {{techpost.image_post}} </li>
