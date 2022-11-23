@@ -3,12 +3,56 @@
 {% block title %}Detailed TechPost{% endblock title %}
 
 {% block content %}
-    <ul> 
-            <li> {{object.title_post}} </li>
-            <li> {{object.date_post}} </li>
-            <li> {{object.content_post}} </li>
-            <li> {{object.image_post}} </li>
-            <li> {{object.authors}} </li>
-    </ul>
+
+    <div> 
+        
+        <ul> 
+                <li> {{object.title_post}} </li>
+                <li> {{object.date_post}} </li>
+                <li> {{object.content_post}} </li>
+                <li> {{object.image_post}} </li>
+                <ul>
+                    <li> Author: <a href="{{object.authors.url_redirect}}">{{object.authors.name}}</a> </li>
+            
+                </ul>
+    
+        </ul>
+    </div>
+
+    <div>
+
+        {% if isfavorite %}
+            <p> Favorite</p>
+        {% endif %}
+        <form action="/add-favorites/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="idtechpost" value={{object.pk}}>
+                <button> Add to favorites </button>
+        </form>
+    </div>
+
+    <div>
+        <form action="/add-comment/" method="POST">
+            {% csrf_token %}
+            {{commentform}}
+            <button> Comment</button>
+        </form>
+    </div>
+
+
+    <div>
+        {% if related_comments == 0 %}
+        <p> <h1> Not comments yet. </h1></p> 
+        {% else %}
+            <ul>
+
+                    {% for comment in comments_query_set %}
+                    <li> <h1> {{comment.title_comment}}</h1></li>
+                    <li> <h3> {{comment.content_comment}} </h3></li>
+
+                    {% endfor %} 
+            </ul>
+        {% endif %}
+    </div>
 
 {% endblock content %}
